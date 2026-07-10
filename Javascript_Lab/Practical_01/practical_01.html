@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Demo</title>
+    
+    <!-- INTERNAL JAVASCRIPT -->
+    <script>
+        // Log a standard informational message
+        console.log("Internal JS loaded: Gathering environment data...");
+
+        function logEnvironmentDetails() {
+            // console.table() displays data as a clean, scannable table
+            const envInfo = {
+                browser: navigator.userAgent,
+                language: navigator.language,
+                screenResolution: `${window.screen.width}x${window.screen.height}`,
+                cookiesEnabled: navigator.cookieEnabled
+            };
+            
+            console.log("User Environment Data Summary:");
+            console.table(envInfo);
+        }
+
+        function triggerTraceDemo() {
+            // Function to show how execution paths are tracked
+            function deepFunction() {
+                console.warn("Trace initiated below:");
+                console.trace("Trace Log"); 
+            }
+            deepFunction();
+        }
+    </script>
+</head>
+<body>
+
+    <h1>JavaScript Integration Demo</h1>
+    <p>Open your browser console (F12) to see the logs.</p>
+
+    <!-- INLINE JAVASCRIPT (Executed directly inside the HTML attribute) -->
+    <button onclick="alert('Welcome to the webpage!'); console.log('User clicked the welcome button.');">
+        Show Welcome Message
+    </button>
+
+    <button onclick="triggerTraceDemo()">
+        Test Console Trace
+    </button>
+
+    <!-- EXTERNAL JAVASCRIPT LINK -->
+    <script src="practical_01_script.js"></script>
+</body>
+</html>
