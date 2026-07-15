@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Practical 1</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background-color: #4ce215; /* Changed background color */
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .container{
+            width: 450px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        /* Student Details in Center */
+        .student{
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        button{
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            margin: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover{
+            background-color: #0056b3;
+        }
+    </style>
+
+    <script>
+        function showWelcome() {
+            document.getElementById("message").innerHTML =
+                "Welcome to JavaScript Practical!";
+        }
+
+        function displayInfo() {
+            console.log("Welcome! JavaScript is running.");
+            console.error("This is a sample error message.");
+
+            const userInfo = {
+                Browser: navigator.userAgent,
+                Language: navigator.language,
+                Platform: navigator.platform,
+                Online: navigator.onLine
+            };
+
+            console.table(userInfo);
+            console.trace("Trace for displayInfo()");
+        }
+    </script>
+
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Student Details in Center -->
+    <div class="student">
+        Name: Shantanu Jumale <br>
+        PRN: 24070521096
+    </div>
+
+    <h1>JavaScript Practical 1</h1>
+
+    <p id="message">Click the button below.</p>
+
+    <button onclick="showWelcome()">Show Welcome Message</button>
+    <button onclick="displayInfo()">Show Environment Info</button>
+
+</div>
+
+</body>
+</html>
