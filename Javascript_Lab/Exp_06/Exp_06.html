@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Validator</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #8d5a5a, #764ba2);
+      color: white;
+    }
+    .container {
+      background: white;
+      color: #333;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      text-align: center;
+      width: 350px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 15px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      background: #667eea;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: .3s;
+    }
+    button:hover {
+      background: #4f5bd5;
+    }
+    #result {
+      margin-top: 15px;
+      padding: 10px;
+      background: #f4f4f4;
+      border-left: 5px solid #667eea;
+      border-radius: 6px;
+      text-align: left;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <h1>Shantanu Jumale</h1>
+  <h2>PRN: 24070521096</h2>
+
+  <div class="container">
+    <h2>📧 Email Validator</h2>
+    <input type="text" id="email" placeholder="Enter your email">
+    <button onclick="checkEmail()">Validate Email</button>
+    <div id="result">Enter an email and click the button.</div>
+  </div>
+
+  <script>
+    function validateEmail(email) {
+      // Pattern checks for alphanumeric/special chars, @, domain, and a 2+ letter extension
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      return emailRegex.test(email.trim());
+    }
+
+    function checkEmail() {
+      const email = document.getElementById("email").value;
+      const resultDiv = document.getElementById("result");
+
+      if (email === "") {
+        resultDiv.innerHTML = "<b>Error:</b> Please enter an email.";
+        return;
+      }
+
+      if (validateEmail(email)) {
+        resultDiv.innerHTML = "<b>Valid:</b> The email is correct.";
+      } else {
+        resultDiv.innerHTML = "<b>Invalid:</b> The email format is wrong.";
+      }
+    }
+  </script>
+</body>
+</html>
