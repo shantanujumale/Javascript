@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload File Example</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #222;
+      font-family: Arial, sans-serif;
+    }
+
+    #btn {
+      padding: 12px 22px;
+      background-color: green;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    #btn:hover {
+      background-color: rgb(41,143,114);
+    }
+
+    #filenp {
+      display: none;
+    }
+    input[type="file"] {
+      display: none; 
+    }
+  
+  </style>
+</head>
+<body>
+  <div>
+    <input type="file" id="filenp">
+    <button id="btn">Upload File</button>
+  </div>
+
+  <script src="11_Events.js"></script>
+</body>
+</html>
