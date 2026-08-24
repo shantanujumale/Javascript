@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gym Admission Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .form-container {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      width: 350px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .input-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    input.valid, select.valid {
+      border-color: #28a745;
+    }
+    input.invalid, select.invalid {
+      border-color: #dc3545;
+    }
+    .error-msg {
+      color: #dc3545;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: .3s;
+    }
+    button:hover {
+      background: #4f5bd5;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Iron Pulse Gym Admission</h2>
+    <form id="gymForm" novalidate>
+      
+      <!-- Full Name -->
+      <div class="input-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" placeholder="John Doe">
+        <span class="error-msg" id="nameError"></span>
+      </div>
+
+      <!-- Email -->
+      <div class="input-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="john@example.com">
+        <span class="error-msg" id="emailError"></span>
+      </div>
+
+      <!-- Age -->
+      <div class="input-group">
+        <label for="age">Age (Must be 16+)</label>
+        <input type="number" id="age" placeholder="25">
+        <span class="error-msg" id="ageError"></span>
+      </div>
+
+      <!-- Membership Plan -->
+      <div class="input-group">
+        <label for="plan">Membership Plan</label>
+        <select id="plan">
+          <option value="">Select a plan...</option>
+          <option value="basic">Basic (Gym Only)</option>
+          <option value="premium">Premium (Gym + Pool)</option>
+          <option value="elite">Elite (Personal Trainer)</option>
+        </select>
+        <span class="error-msg" id="planError"></span>
+      </div>
+
+      <button type="submit">Submit Application</button>
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('gymForm');
+      const fullName = document.getElementById('fullName');
+      const email = document.getElementById('email');
+      const age = document.getElementById('age');
+      const plan = document.getElementById('plan');
+
+      const setInvalid = (element, message, errorEl) => {
+        element.classList.remove('valid');
+        element.classList.add('invalid');
+        errorEl.textContent = message;
+      };
+
+      const setValid = (element, errorEl) => {
+        element.classList.remove('invalid');
+        element.classList.add('valid');
+        errorEl.textContent = '';
+      };
+
+      const validateName = () => {
+        const errorEl = document.getElementById('nameError');
+        if (fullName.value.trim().length < 3) {
+          setInvalid(fullName, 'Name must be at least 3 characters long.', errorEl);
+          return false;
+        }
+        setValid(fullName, errorEl);
+        return true;
+      };
+
+      const validateEmail = () => {
+        const errorEl = document.getElementById('emailError');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email.value.trim())) {
+          setInvalid(email, 'Please enter a valid email address.', errorEl);
+          return false;
+        }
+        setValid(email, errorEl);
+        return true;
+      };
+
+      const validateAge = () => {
+        const errorEl = document.getElementById('ageError');
+        const ageVal = parseInt(age.value, 10);
+        if (isNaN(ageVal) || ageVal < 16 || ageVal > 100) {
+          setInvalid(age, 'You must be between 16 and 100 years old.', errorEl);
+          return false;
+        }
+        setValid(age, errorEl);
+        return true;
+      };
+
+      const validatePlan = () => {
+        const errorEl = document.getElementById('planError');
+        if (plan.value === '') {
+          setInvalid(plan, 'Please select a membership plan.', errorEl);
+          return false;
+        }
+        setValid(plan, errorEl);
+        return true;
+      };
+
+      fullName.addEventListener('input', validateName);
+      email.addEventListener('input', validateEmail);
+      age.addEventListener('input', validateAge);
+      plan.addEventListener('change', validatePlan);
+
+      fullName.addEventListener('blur', validateName);
+      email.addEventListener('blur', validateEmail);
+      age.addEventListener('blur', validateAge);
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const isNameValid = validateName();
+        const isEmailValid = validateEmail();
+        const isAgeValid = validateAge();
+        const isPlanValid = validatePlan();
+
+        if (isNameValid && isEmailValid && isAgeValid && isPlanValid) {
+          alert('Form submitted successfully! Welcome to Iron Pulse Gym.');
+          form.reset();
+          [fullName, email, age, plan].forEach(el => el.classList.remove('valid'));
+        }
+      });
+    });
+  </script>
+</body>
+</html>
